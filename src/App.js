@@ -15,8 +15,6 @@ function Square({ value, onSquareClick }) {
 // Here we are creating a component/reusable code
 // used to render, manage, and update the UI elements
 function Board({ xIsNext, squares, onPlay }) {
-//const [xIsNext, setXIsNext] = useState(true);
-//const [squares, setSquares] = useState(Array(9).fill(null));
   function handleClick(i) {
     if (squares[i] || calculateTheWinner(squares)) {
       return;
@@ -28,18 +26,19 @@ function Board({ xIsNext, squares, onPlay }) {
     else {
       nextSquares[i] = "O";
     }
-//  setSquares(nextSquares);
-//  setXIsNext(!xIsNext);
     onPlay(nextSquares);
   }
+
   const winner = calculateTheWinner(squares);
   let status;
+
   if (winner) {
     status = "Winner: " + winner + "!!";
   }
   else {
     status = "Next Player: " + (xIsNext ? "X" : "O");
   }
+
   return (
     <React.Fragment>
       <div className="status">{status}</div>
